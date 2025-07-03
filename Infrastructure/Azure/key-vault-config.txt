@@ -1,0 +1,4 @@
+Azure Key Vault Configuration
+Resource Group: HealthcareAppointmentSystemRG
+Vault: healthcare-vault
+Access Policies: Managed Identity for all services

@@ -1,0 +1,4 @@
+Azure Health Data Services Configuration
+Workspace: healthcareappointment
+FHIR Endpoint: https://healthcareappointment-fhir-service.fhir.azurehealthcareapis.com
+DICOM Endpoint: https://healthcareappointment-dicom-service.dicom.azurehealthcareapis.com

@@ -1,0 +1,10 @@
+Azure App Service Configuration
+Resource Group: HealthcareAppointmentSystemRG
+Services:
+- AppointmentService: appointment-service-app
+- UserService: user-service-app
+- TelemedicineService: telemedicine-service-app
+- AnalyticsService: analytics-service-app
+- NotificationService: notification-service-app
+- ClientApp: client-app
+Managed Identity: Enabled for all services

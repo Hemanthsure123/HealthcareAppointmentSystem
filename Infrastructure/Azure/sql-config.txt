@@ -1,0 +1,6 @@
+Azure SQL Configuration
+Resource Group: HealthcareAppointmentSystemRG
+Server: healthcare-sql-server
+Database: healthcare-db
+TDE: Enabled
+Firewall Rules: Allow development IP only
