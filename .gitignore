@@ -1,0 +1,16 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.psess
+*.vssscc
+*.buildscc
+*.pdb
+*.obj
+# NuGet
+*.nupkg
+# ReSharper
+_ReSharper.*/
+# Local Binaries
+[Bb]in/
+[Oo]bj/
