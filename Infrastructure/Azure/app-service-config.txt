@@ -6,5 +6,5 @@ Services:
 - TelemedicineService: telemedicine-service-app
 - AnalyticsService: analytics-service-app
 - NotificationService: notification-service-app
-- ClientApp: client-app
+- ClientApp: client-service-app
 Managed Identity: Enabled for all services
