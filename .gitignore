@@ -14,3 +14,4 @@ _ReSharper.*/
 # Local Binaries
 [Bb]in/
 [Oo]bj/
+Infrastructure/Azure/azure-ad-config.txt

@@ -1,8 +1,10 @@
-using UserService.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using UserService.Models;
+
 namespace UserService.Data;
-public class UserDbContext : DbContext
+
+public class UserDbContext : IdentityDbContext<User>
 {
-    public DbSet<User> Users { get; set; }
     public UserDbContext(DbContextOptions<UserDbContext> options) : base(options) { }
 }

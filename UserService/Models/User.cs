@@ -1,10 +1,8 @@
-using Shared.Models;
-using System;
+using Microsoft.AspNetCore.Identity;
+
 namespace UserService.Models;
-public class User
+
+public class User : IdentityUser
 {
-    public Guid Id { get; set; }
-    public string Email { get; set; } = string.Empty;
-    public string Role { get; set; } = string.Empty;
-    public string PasswordHash { get; set; } = string.Empty;
+    // You can add additional properties here later if needed
 }

@@ -9,4 +9,5 @@ public class Appointment
     public DateTime Date { get; set; }
     public bool IsVirtual { get; set; }
     public string Status { get; set; } = "Scheduled";
+    public string? FhirId { get; set; }
 }
