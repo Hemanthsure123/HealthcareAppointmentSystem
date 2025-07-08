@@ -15,3 +15,4 @@ _ReSharper.*/
 [Bb]in/
 [Oo]bj/
 Infrastructure/Azure/azure-ad-config.txt
+**/appsettings.json
