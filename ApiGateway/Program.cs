@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
 builder.Services.AddOcelot(builder.Configuration);
 
-// Configure authentication to use the JWT secret key
+// This section provides the 'Bearer' authentication Ocelot needs
 builder.Services.AddAuthentication()
     .AddJwtBearer("Bearer", options =>
     {
@@ -21,20 +21,17 @@ builder.Services.AddAuthentication()
             ValidateIssuerSigningKey = true,
             ValidIssuer = builder.Configuration["JWT:Issuer"],
             ValidAudience = builder.Configuration["JWT:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]!))
         };
     });
 
-// You also need to add the Authorization service
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-// --- THE FIX IS HERE ---
-// These two lines must be added to activate security
+// These must be configured before Ocelot
 app.UseAuthentication();
 app.UseAuthorization();
-// ----------------------
 
 await app.UseOcelot();
 

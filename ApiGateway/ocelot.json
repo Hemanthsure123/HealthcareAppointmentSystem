@@ -1,46 +1,5 @@
 {
   "Routes": [
-    // --- UserService Routes ---
-    {
-      "UpstreamPathTemplate": "/api/auth/{everything}",
-      "UpstreamHttpMethod": [ "POST" ],
-      "DownstreamPathTemplate": "/api/auth/{everything}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5251
-        }
-      ]
-    },
-    {
-      "UpstreamPathTemplate": "/api/roles/{everything}",
-      "UpstreamHttpMethod": [ "POST" ],
-      "DownstreamPathTemplate": "/api/roles/{everything}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5251
-        }
-      ]
-    },
-    {
-      "UpstreamPathTemplate": "/api/users/test",
-      "UpstreamHttpMethod": [ "GET" ],
-      "DownstreamPathTemplate": "/api/users/test",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5251
-        }
-      ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer"
-      }
-    },
-    // --- AppointmentService Routes ---
     {
       "UpstreamPathTemplate": "/api/appointments",
       "UpstreamHttpMethod": [ "POST", "GET" ],
@@ -51,10 +10,7 @@
           "Host": "localhost",
           "Port": 5174
         }
-      ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer"
-      }
+      ]
     },
     {
       "UpstreamPathTemplate": "/api/appointments/{id}",
@@ -66,9 +22,64 @@
           "Host": "localhost",
           "Port": 5174
         }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/users/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+      "DownstreamPathTemplate": "/api/users/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5251
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/telemedicine/token",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamPathTemplate": "/api/telemedicine/token",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5176
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/analytics/doctor-summary/{doctorId}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/api/analytics/doctor-summary/{doctorId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5150
+        }
       ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer"
+      }
+    },
+
+    {
+      "UpstreamPathTemplate": "/api/analytics/summary",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/api/analytics/summary",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5150
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "Bearer {DownstreamAccessToken}"
       }
     }
   ],

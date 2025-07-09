@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.Tests", "UserService.Tests\UserService.Tests.csproj", "{7DF36718-917C-400E-A63E-37C7707A0BD9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppointmentService.Tests", "AppointmentService.Tests\AppointmentService.Tests.csproj", "{809FA927-6415-4515-AAA3-A344F55CD5CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,6 +141,18 @@ Global
 		{7DF36718-917C-400E-A63E-37C7707A0BD9}.Release|x64.Build.0 = Release|Any CPU
 		{7DF36718-917C-400E-A63E-37C7707A0BD9}.Release|x86.ActiveCfg = Release|Any CPU
 		{7DF36718-917C-400E-A63E-37C7707A0BD9}.Release|x86.Build.0 = Release|Any CPU
+		{809FA927-6415-4515-AAA3-A344F55CD5CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{809FA927-6415-4515-AAA3-A344F55CD5CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{809FA927-6415-4515-AAA3-A344F55CD5CF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{809FA927-6415-4515-AAA3-A344F55CD5CF}.Debug|x64.Build.0 = Debug|Any CPU
+		{809FA927-6415-4515-AAA3-A344F55CD5CF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{809FA927-6415-4515-AAA3-A344F55CD5CF}.Debug|x86.Build.0 = Debug|Any CPU
+		{809FA927-6415-4515-AAA3-A344F55CD5CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{809FA927-6415-4515-AAA3-A344F55CD5CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{809FA927-6415-4515-AAA3-A344F55CD5CF}.Release|x64.ActiveCfg = Release|Any CPU
+		{809FA927-6415-4515-AAA3-A344F55CD5CF}.Release|x64.Build.0 = Release|Any CPU
+		{809FA927-6415-4515-AAA3-A344F55CD5CF}.Release|x86.ActiveCfg = Release|Any CPU
+		{809FA927-6415-4515-AAA3-A344F55CD5CF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

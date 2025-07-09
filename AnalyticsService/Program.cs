@@ -1,35 +1,46 @@
-using AnalyticsService.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using AnalyticsService.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-// Configure EF Core with Azure SQL (connection string will be updated later with Key Vault)
+
 builder.Services.AddDbContext<AnalyticsDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("AzureSqlConnection")));
 
-builder.Services.AddHttpClient<FhirClientService>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApi(options =>
+    .AddJwtBearer(options =>
     {
-        options.Authority = $"https://login.microsoftonline.com/{builder.Configuration["AzureAd:TenantId"]}/v2.0";
-        options.Audience = builder.Configuration["AzureAd:ClientId"];
-    }, options =>
-    {
-        options.Instance = builder.Configuration["AzureAd:Instance"];
-        options.TenantId = builder.Configuration["AzureAd:TenantId"];
-        options.ClientId = builder.Configuration["AzureAd:ClientId"];
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["JWT:Issuer"],
+            ValidAudience = builder.Configuration["JWT:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]!))
+        };
     });
 
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+
 app.Run();

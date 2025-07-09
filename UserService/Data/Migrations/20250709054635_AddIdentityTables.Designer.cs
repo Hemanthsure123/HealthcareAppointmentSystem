@@ -12,7 +12,7 @@ using UserService.Data;
 namespace UserService.Data.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20250707105151_AddIdentityTables")]
+    [Migration("20250709054635_AddIdentityTables")]
     partial class AddIdentityTables
     {
         /// <inheritdoc />
