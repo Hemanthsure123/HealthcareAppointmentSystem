@@ -1,0 +1,30 @@
+@model IEnumerable<Shared.Models.UserDTO>
+
+    @{
+    ViewData["Title"] = "Admin Dashboard - Pending Approvals";
+    }
+
+    <h1>Pending User Approvals</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>
+                    <form asp-action="ApproveUser" method="post">
+                        <input type="hidden" name="userId" value="@user.Id" />
+                        <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>

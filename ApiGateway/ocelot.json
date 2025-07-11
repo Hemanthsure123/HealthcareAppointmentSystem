@@ -25,6 +25,18 @@
       ]
     },
     {
+      "UpstreamPathTemplate": "/api/auth/{everything}",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamPathTemplate": "/api/auth/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5251
+        }
+      ]
+    },
+    {
       "UpstreamPathTemplate": "/api/users/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
       "DownstreamPathTemplate": "/api/users/{everything}",
@@ -37,16 +49,42 @@
       ]
     },
     {
-      "UpstreamPathTemplate": "/api/telemedicine/token",
+      "UpstreamPathTemplate": "/api/telemedicine/token/{appointmentId}",
       "UpstreamHttpMethod": [ "POST" ],
-      "DownstreamPathTemplate": "/api/telemedicine/token",
+      "DownstreamPathTemplate": "/api/telemedicine/token/{appointmentId}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 5176
+          "Port": 5174
         }
       ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/admin/pending-users",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/api/admin/pending-users",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5251
+        }
+      ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "Bearer" }
+    },
+    {
+      "UpstreamPathTemplate": "/api/admin/approve-user/{userId}",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamPathTemplate": "/api/admin/approve-user/{userId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5251
+        }
+      ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "Bearer" }
     },
     {
       "UpstreamPathTemplate": "/api/analytics/doctor-summary/{doctorId}",

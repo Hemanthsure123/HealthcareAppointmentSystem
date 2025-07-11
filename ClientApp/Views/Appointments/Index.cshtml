@@ -1,0 +1,38 @@
+@model IEnumerable<Shared.Models.AppointmentDTO>
+
+    @{
+    ViewData["Title"] = "My Appointments";
+    }
+
+    <h1>My Appointments</h1>
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Book New Appointment</a>
+    </p>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Virtual</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+            <tr>
+                <td>@item.Date.ToString("g")</td>
+                <td>@item.Status</td>
+                <td>@item.IsVirtual</td>
+                <td>
+                    @if (item.IsVirtual)
+                    {
+                    <a asp-action="JoinCall" asp-route-id="@item.Id" class="btn btn-success btn-sm">Join Video Call</a>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>

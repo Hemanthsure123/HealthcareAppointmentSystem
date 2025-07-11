@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using Azure.Communication.Identity;
 using System.Threading.Tasks;
 using System.IO;
+using System;
+using System.Collections.Generic;
 using System.Text;
 using AppointmentService.Services; // For BlobStorageService
 
@@ -15,16 +17,25 @@ namespace AppointmentService.Controllers
     {
         private readonly CommunicationIdentityClient _acsClient;
         private readonly BlobStorageService _blobStorageService;
+        // This dictionary will store a call ID for each appointment ID
+        private static readonly Dictionary<string, Guid> _appointmentCallIds = new();
 
-        public TelemedicineController(IConfiguration configuration, BlobStorageService blobStorageService)
+        public TelemedicineController(CommunicationIdentityClient acsClient, BlobStorageService blobStorageService)
         {
-            _acsClient = new CommunicationIdentityClient(configuration["ACS:ConnectionString"]);
+            _acsClient = acsClient;
             _blobStorageService = blobStorageService;
         }
 
-        [HttpPost("token")]
-        public async Task<IActionResult> GetAcsToken()
+        [HttpPost("token/{appointmentId}")]
+        public async Task<IActionResult> GetAcsToken(string appointmentId)
         {
+            // Get or create a unique group ID for the appointment call
+            if (!_appointmentCallIds.ContainsKey(appointmentId))
+            {
+                _appointmentCallIds[appointmentId] = Guid.NewGuid();
+            }
+            var groupId = _appointmentCallIds[appointmentId];
+
             var identityResponse = await _acsClient.CreateUserAsync();
             var identity = identityResponse.Value;
 
@@ -35,7 +46,8 @@ namespace AppointmentService.Controllers
             {
                 acsUserId = identity.Id,
                 token = token.Token,
-                expiresOn = token.ExpiresOn
+                expiresOn = token.ExpiresOn,
+                groupId = groupId // Return the group ID for the call
             });
         }
 
